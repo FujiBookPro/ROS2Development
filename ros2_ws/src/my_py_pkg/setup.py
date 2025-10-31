@@ -26,6 +26,7 @@ setup(
             "smartphone = my_py_pkg.smartphone:main",
             "pizza_shop = my_py_pkg.pizza_shop:main",
             "pizza_delivery = my_py_pkg.pizza_delivery:main",
+            "turtlesim_example = my_py_pkg.turtlesim_example:main",
         ],
     },
 )
