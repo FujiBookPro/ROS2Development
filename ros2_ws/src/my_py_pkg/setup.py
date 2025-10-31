@@ -24,6 +24,8 @@ setup(
             "my_second_node = my_py_pkg.my_second_node:main",
             "robot_news_station = my_py_pkg.robot_news_station:main",
             "smartphone = my_py_pkg.smartphone:main",
+            "pizza_shop = my_py_pkg.pizza_shop:main",
+            "pizza_delivery = my_py_pkg.pizza_delivery:main",
         ],
     },
 )
