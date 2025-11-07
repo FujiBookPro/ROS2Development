@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import ExternalShutdownException
 from example_interfaces.msg import String
 
 class MoveForwardNode(Node):
@@ -17,10 +18,14 @@ class MoveForwardNode(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
-    node = MoveForwardNode()
-    rclpy.spin(node)
-    rclpy.shutdown()
+    try:
+        rclpy.init(args=args)
+        node = MoveForwardNode()
+        rclpy.spin(node)
+        rclpy.shutdown()
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
+
 
 
 if __name__ == "__main__":

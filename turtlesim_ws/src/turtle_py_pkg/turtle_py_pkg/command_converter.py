@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
+from rclpy.executors import ExternalShutdownException
 from example_interfaces.msg import String
 from geometry_msgs.msg import Twist
 
@@ -17,7 +18,7 @@ class CommandConverterNode(Node):
         if command_msg.data == "move forward":
             vel_msg.linear.x = 1.0
         elif command_msg.data == "move right":
-            vel_msg.linear.y = 1.0
+            vel_msg.linear.y = -1.0
         else:
             vel_msg.linear.x = 0.0
             vel_msg.linear.y = 0.0
@@ -26,10 +27,13 @@ class CommandConverterNode(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
-    node = CommandConverterNode()
-    rclpy.spin(node)
-    rclpy.shutdown()
+    try:
+        rclpy.init(args=args)
+        node = CommandConverterNode()
+        rclpy.spin(node)
+        rclpy.shutdown()
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
 
 
 if __name__ == "__main__":
